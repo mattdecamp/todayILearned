@@ -1,12 +1,29 @@
 #!/usr/bin/env node
 
+const mongoose = require('mongoose')
+require("dotenv").config({ path: "process.env" });
+
+
+// Connect to our Database and handle any bad connections
+mongoose.connect(process.env.DATABASE);
+mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
+mongoose.connection.on("error", (err) => {
+  console.error(`🚫  → ${err.message}`);
+});
+
+// Import the Models
+require("../models/FeedItem");
+require("../models/User");
+
+
 /**
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('todayilearned:server');
-var http = require('http');
+const app = require('../app');
+const debug = require('debug')('todayilearned:server');
+const http = require('http');
+// import environmental variables from our variables.env file
 
 /**
  * Get port from environment and store in Express.
