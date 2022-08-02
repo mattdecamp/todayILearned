@@ -1,0 +1,9 @@
+mixin tilFeedItemCard
+  each item in feedItems 
+      h2= item.title
+      p= item.body
+      p= item.name
+      if item.tags 
+        each tag in item.tags 
+          span #{tag}
+      time(datetime=item.created)= h.moment(item.created).format('LLL')

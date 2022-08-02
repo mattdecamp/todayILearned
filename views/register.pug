@@ -1,0 +1,14 @@
+extends layout 
+
+block content
+  form.form(action="/register" method="POST")
+      h1 #{title}
+      label(for='name') Name 
+      input(type='text' name='name' value=name)
+      label(type='email') Email
+      input(type='text' name='email' value=email)
+      label(for='password') Password
+      input(type='password' name='password' )
+      label(for='passwordconfirm') Confirm Password
+      input(type='password' name='passwordconfirm')
+      input(type='submit' value='Register')

@@ -1,0 +1,22 @@
+mixin nav 
+  nav 
+    .nav__container
+      a(href=`${logo.url}`).nav__link.logo
+        span #{logo.title}
+      if user
+        a(href=`/account`).nav__link
+            span Account
+        a(href=`/logout`).nav__link
+            span Logout
+      else 
+        a(href=`/register`).nav__link
+            span Register
+        a(href=`/login`).nav__link
+            span Login
+      //-   each i in nav
+      //-     a(href=`${i.url}`).nav__link
+      //-       span #{i.title}
+      //- else
+      //-   a(href=`${nav[].url}`).nav__link
+      //-         span #{i.title}
+      //-   span #{nav[0].title}
