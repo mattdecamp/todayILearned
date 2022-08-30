@@ -1,5 +1,6 @@
 mixin tilFeedItemCard
   each item in feedItems 
+    article.feed__item--card
       h2= item.title
       p= item.body
       p= item.name
@@ -7,3 +8,6 @@ mixin tilFeedItemCard
         each tag in item.tags 
           span #{tag}
       time(datetime=item.created)= h.moment(item.created).format('LLL')
+      p= item.author.name || ''
+      if user
+        a(href=`/${item._id}/delete`) Remove
