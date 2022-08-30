@@ -78,5 +78,97 @@ select {
     scroll-behavior: auto !important;
   }
 }
+/* @link https://utopia.fyi/space/calculator?c=320,21,1.2,2000,24,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l */
+:root {
+  --max-width: 62.5rem;
+  --space-3xs: clamp(0.31rem, calc(0.3rem + 0.06vw), 0.38rem);
+  --space-2xs: clamp(0.69rem, calc(0.68rem + 0.06vw), 0.75rem);
+  --space-xs: clamp(1rem, calc(0.98rem + 0.12vw), 1.13rem);
+  --space-s: clamp(1.31rem, calc(1.28rem + 0.18vw), 1.5rem);
+  --space-m: clamp(2rem, calc(1.95rem + 0.24vw), 2.25rem);
+  --space-l: clamp(2.63rem, calc(2.55rem + 0.36vw), 3rem);
+  --space-xl: clamp(3.94rem, calc(3.83rem + 0.54vw), 4.5rem);
+  --space-2xl: clamp(5.25rem, calc(5.11rem + 0.71vw), 6rem);
+  --space-3xl: clamp(7.88rem, calc(7.66rem + 1.07vw), 9rem);
+  /* One-up pairs */
+  --space-3xs-2xs: clamp(0.31rem, calc(0.23rem + 0.42vw), 0.75rem);
+  --space-2xs-xs: clamp(0.69rem, calc(0.6rem + 0.42vw), 1.13rem);
+  --space-xs-s: clamp(1rem, calc(0.9rem + 0.48vw), 1.5rem);
+  --space-s-m: clamp(1.31rem, calc(1.13rem + 0.89vw), 2.25rem);
+  --space-m-l: clamp(2rem, calc(1.81rem + 0.95vw), 3rem);
+  --space-l-xl: clamp(2.63rem, calc(2.27rem + 1.79vw), 4.5rem);
+  --space-xl-2xl: clamp(3.94rem, calc(3.54rem + 1.96vw), 6rem);
+  --space-2xl-3xl: clamp(5.25rem, calc(4.54rem + 3.57vw), 9rem);
+  /* Custom pairs */
+  --space-s-l: clamp(1.31rem, calc(0.99rem + 1.61vw), 3rem);
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  font-size: var(--step-0, 1.5rem);
+}
+
+header, #footer__container {
+  margin-top: var(--space-xs, 1rem);
+  margin-bottom: var(--space-xs, 1rem);
+}
+
+h1 {
+  font-size: var(--step-4, 2.72rem);
+}
+
+h2 {
+  font-size: var(--step-3, 2.27rem);
+}
+
+h3 {
+  font-size: var(--step-2, 1.89rem);
+}
+
+h4 {
+  font-size: var(--step-1, 1.58rem);
+}
+
+/* Default Layout */
+.default-layout {
+  margin: 0 auto;
+  width: min(var(--max-width, 62.5rem), 100% - var(--space-s));
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Skip to content */
+[href="#main"] {
+  display: inline-block;
+  position: absolute;
+  top: -10rem;
+}
+[href="#main"]:focus {
+  top: 0rem;
+}
+
+/* Main Element */
+/* @link https://utopia.fyi/type/calculator?c=320,21,1.2,2000,24,1.25,5,3,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l */
+:root {
+  --step--3: clamp(0.76rem, calc(0.76rem + 0.01vw), 0.77rem);
+  --step--2: clamp(0.91rem, calc(0.90rem + 0.05vw), 0.96rem);
+  --step--1: clamp(1.09rem, calc(1.07rem + 0.10vw), 1.20rem);
+  --step-0: clamp(1.31rem, calc(1.28rem + 0.18vw), 1.50rem);
+  --step-1: clamp(1.58rem, calc(1.52rem + 0.29vw), 1.88rem);
+  --step-2: clamp(1.89rem, calc(1.80rem + 0.43vw), 2.34rem);
+  --step-3: clamp(2.27rem, calc(2.14rem + 0.63vw), 2.93rem);
+  --step-4: clamp(2.72rem, calc(2.54rem + 0.90vw), 3.66rem);
+  --step-5: clamp(3.27rem, calc(3.02rem + 1.25vw), 4.58rem);
+}
+
+#header__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+footer {
+  margin-top: auto;
+}
 
 /*# sourceMappingURL=main.css.map */
