@@ -1,1 +1,11 @@
 @import 'main/reset';
+@import 'main/spacing';
+@import 'main/base';
+
+@import 'main/typography/sizing';
+@import 'main/typography/fonts';
+
+@import 'components/header';
+@import 'components/footer';
+@import 'components/nav';
+@import 'components/buttons'
