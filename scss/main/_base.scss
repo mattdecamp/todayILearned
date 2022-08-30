@@ -1,0 +1,47 @@
+body {
+  font-family: system-ui, sans-serif;
+  font-size: var(--step-0,1.5rem);
+}
+
+header,#footer__container {
+  margin-top: var(--space-xs,1rem);
+  margin-bottom: var(--space-xs,1rem);
+}
+
+h1 {
+  font-size: var(--step-4, 2.72rem)
+}
+h2 {
+  font-size: var(--step-3,2.27rem)
+}
+h3 {
+  font-size: var(--step-2,1.89rem)
+}
+h4 {
+  font-size: var(--step-1, 1.58rem)
+}
+
+/* Default Layout */
+
+.default-layout {
+  margin: 0 auto;
+  // max-width: 1000px;
+  // // min-width: 70%;
+  width: min(var(--max-width, 62.5rem), 100% - var(--space-s));
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Skip to content */
+
+[href="#main"] {
+  display: inline-block;
+  position: absolute;
+  top: -10rem;
+  &:focus {
+    top: 0rem;
+  }
+}
+
+/* Main Element */
