@@ -7,22 +7,25 @@ html
     title= title
     link(rel='stylesheet' href='/styles/main.css')
   body
-    +header
-    if user 
-      p= 'A user is logged in.'
-    else
-      p= 'No user is logged in.'
-    block messages
-      if locals.flashes
-        pre= h.dump(locals.flashes)
-        .inner
-          .flash-messages
-            - const categories = Object.keys(locals.flashes)
-            each category in categories
-              each message in flashes[category]
-                .flash(class=`flash--${category}`)
-                  p.flash__text!= message
-                  button.flash__remove(onClick="this.parentElement.remove()") &times;
-    block content
-    +footer
+    a(href="#main") Skip to Main Content
+    .default-layout
+      +header
+      //- if user 
+      //-   p= 'A user is logged in.'
+      //- else
+      //-   p= 'No user is logged in.'
+      main#main.content
+        block messages
+          if locals.flashes
+            pre= h.dump(locals.flashes)
+            .inner
+              .flash-messages
+                - const categories = Object.keys(locals.flashes)
+                each category in categories
+                  each message in flashes[category]
+                    .flash(class=`flash--${category}`)
+                      p.flash__text!= message
+                      button.flash__remove(onClick="this.parentElement.remove()") &times;
+        block content
+      +footer
 
