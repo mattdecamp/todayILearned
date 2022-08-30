@@ -1,7 +1,13 @@
 extends layout
 include mixins/_tilForm
-include mixins/_tilFeedItemCard
+include mixins/_tilFeed
 block content
   h1 #{title}
+  h2 #{title}
+  h3 #{title}
+  h4 #{title}
+  h5 #{title}
+  h6 #{title}
+  //- if user
   +tilForm()  
-  +tilFeedItemCard()
+  +tilFeed()
