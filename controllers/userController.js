@@ -63,33 +63,21 @@ exports.registerUser = async (req, res, next) => {
   next();
 };
 
-// exports.validateErrors = (req, res, next) => {
-//   const errors = validationResult(req);
-//   if (errors.isEmpty()) {
-//     return next();
-//   }
-//   const extractedErrors = [];
-//   errors.array().map((err) => extractedErrors.push({ [err.param]: err.msg }));
+exports.editAccount = (req, res) => {
+  res.render("account", { title: "Edit Your Account" });
+};
 
-//   return res.status(400).json({
-//     errors: extractedErrors,
-//     success: false,
-//   });
+exports.updateAccount = async (req, res) => {
+  const updates = {
+    name: req.body.name,
+    email: req.body.email,
+  };
+  const user = await User.findOneAndUpdate(
+    { _id: req.user._id },
+    { $set: updates },
+    { new: true, runValidators: true }
+  );
+  req.flash('success', 'Your Account has been successfully updated!')
+  res.redirect('/account');
 
-// if (!errors.isEmpty()) {
-//   return res.status(400).json({ errors: errors.array() });
-// }
-// };
-
-// const errors = validationResult(req);
-// if (errors) {
-//   req.flash(
-//     "error",
-//     errors.mapped((err) => err.msg)
-//   );
-//   res.render("register", {
-//     title: "Register",
-//     body: req.body,
-//     flashes: req.flash(),
-//   });
-// }
+};
