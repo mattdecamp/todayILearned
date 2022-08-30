@@ -18,6 +18,11 @@ const feedSchema = new Schema({
     default: Date.now,
   },
   tags: [String],
+  author: {
+    type: mongoose.Schema.ObjectId,
+    ref: "User",
+    required: "You must supply and author."
+  }
 });
 
 // create the slug before completing the feed item save process
@@ -26,7 +31,7 @@ feedSchema.pre("save", function (next) {
     next();
     return;
   }
-  this.slug = slug(this.title);
+  this.slug = slug(this.title+"-"+this.created.toDateString());
   next();
   // TODO make sure all slugs can be unique
 });
