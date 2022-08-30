@@ -12,8 +12,14 @@ const { catchErrors } = require("../handlers/errorHandlers");
 // });
 router.get("/", catchErrors(feedController.getFeed));
 
+router.get("/:id/delete", authController.authDelete, catchErrors(feedController.deleteFeedItem));
+
 // router.get('/', feedController.addFeedItem);
-router.post("/add", catchErrors(feedController.createFeedItem));
+router.post(
+  "/add",
+  authController.authPost,
+  catchErrors(feedController.createFeedItem)
+);
 
 // render login and login form
 router.get("/login", userController.loginForm);
@@ -37,8 +43,7 @@ router.post(
 // logout user
 router.get("/logout", authController.logout);
 
-router.get("/account", function (req, res, next) {
-  res.render("account", { title: "Account" });
-});
+router.get("/account", authController.authEdit, userController.editAccount);
+router.post("/account", catchErrors(userController.updateAccount));
 
 module.exports = router;
