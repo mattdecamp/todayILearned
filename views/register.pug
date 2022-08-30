@@ -4,7 +4,7 @@ block content
   form.form(action="/register" method="POST")
       h1 #{title}
       label(for='name') Name 
-      input(type='text' name='name' value=name)
+      input(type='text' name='name' value=name autofocus)
       label(type='email') Email
       input(type='text' name='email' value=email)
       label(for='password') Password
