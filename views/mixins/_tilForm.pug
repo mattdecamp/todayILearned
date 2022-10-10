@@ -1,11 +1,16 @@
 mixin tilForm
-  #entry__form--container
+  .entry__form--container
     form(action="/add" method="POST")
-      label(for="title") Title 
-      input(type="text" name="title")
-      label(for="body") Today I Learned...
-      textarea(name="body" placeholder="Today I Learned...")
-
-      label(for="tags") Tags
-      input(type="text" name="tags" placeholder="Separate tags with commas")
-      button(type="submit" value="Post") Post
+      .entry__form--top
+        .entry__form--top--title
+          label(for="title") Title 
+          input(type="text" name="title" placeholder="Post Title")
+        .entry__form--top--body
+          label(for="body") Today I Learned...
+          textarea(name="body" placeholder="Today I Learned..."  maxlength="200" style="resize: none;")
+      .entry__form--bottom
+        .entry__form--bottom--tags
+          label(for="tags") Tags
+          input(type="text" name="tags" placeholder="Separate tags with commas")
+        .entry__form--bottom--post
+          button.button(type="submit" value="Post") Post
