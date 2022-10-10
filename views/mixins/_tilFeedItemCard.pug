@@ -1,13 +1,22 @@
 mixin tilFeedItemCard
   each item in feedItems 
-    article.feed__item--card
-      h2= item.title
-      p= item.body
-      p= item.name
-      if item.tags 
-        each tag in item.tags 
-          span #{tag}
-      time(datetime=item.created)= h.moment(item.created).format('LLL')
-      p= item.author.name || ''
-      if user
-        a(href=`/${item._id}/delete`) Remove
+    article.card.feed__item
+      .feed__item--header
+        .feed__item--header__user
+          .gravatar
+            img(src=item.author.gravatar)
+        .feed__item--header__time
+          if user && item.author.equals(user._id)
+            .feed__item__remove-post
+              a.link--no-style.remove-post(href=`/${item._id}/delete`) &#9747;
+          .feed__item-date
+            time(datetime=item.created)= h.moment(item.created).format('LL')
+          .feed__item-time
+            time(datetime=item.created)= h.moment(item.created).format('LT')
+      .feed__item--body
+        h3= item.title
+        p= item.body
+      .feed__item--footer
+        if item.tags 
+          each tag in item.tags 
+            span ##{tag}
