@@ -1,11 +1,23 @@
 @import 'main/reset';
 @import 'main/spacing';
 @import 'main/base';
+@import 'main/colors';
+@import 'main/utilities';
 
 @import 'main/typography/sizing';
 @import 'main/typography/fonts';
 
+@import 'main/links';
+
 @import 'components/header';
 @import 'components/footer';
 @import 'components/nav';
-@import 'components/buttons'
+@import 'components/buttons';
+@import 'components/logo';
+
+@import 'components/forms/forms';
+@import 'components/forms/tilForm';
+
+@import 'components/feed/feed';
+@import 'components/feed/feedItem'
+

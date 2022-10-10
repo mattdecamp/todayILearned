@@ -1,0 +1,19 @@
+.button {
+  padding: var(--space-2xs) var(--space-xs);
+  color: var(--button-text, #073b4c);
+  background: var(--button-background, #06d6a0);
+  border: 0;
+  border-radius: var(--border-radius, 10px);
+  cursor: pointer;
+  & input {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.register__button,
+.account__button,
+.login__button {
+  align-self: flex-start;
+}

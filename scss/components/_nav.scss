@@ -1,0 +1,21 @@
+nav {
+  & a {
+    text-decoration: none;
+    color: var(--nav-link-default, #073B4C);
+    &:hover {
+      text-decoration: underline;
+    };
+  }
+}
+.nav__container {
+  display: inline-flex;
+  align-items: center;
+  & * + * {
+    margin-inline-start: var(--space-s, 1.2rem);
+  }
+}
+
+.gravatar img {
+  max-width: var(--step-4);
+  border-radius: 1000px;
+}
