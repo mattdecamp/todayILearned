@@ -2,13 +2,12 @@ mixin nav
   nav 
     .nav__container
       if user
-        a(href=`/account`).nav__link
-            span Account
         a(href=`/logout`).nav__link
             span Logout
-        img(src=user.gravatar)
+        a(href=`/account` title='Edit Account').nav__link.gravatar
+          img(src=user.gravatar)
       else 
         a(href=`/register`).nav__link
             span Register
-        a(href=`/login`).nav__link
+        a(href=`/login`).nav__link.button
             span Login
