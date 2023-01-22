@@ -31,6 +31,10 @@
   min-width: 60%;
 }
 
+.charCount {
+  text-align: right;
+}
+
 @media screen and (min-width: 35rem) {
   .entry__form--bottom {
     flex-direction: row;

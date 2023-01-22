@@ -1,4 +1,6 @@
-.logo {
+a.logo {
+  color: var(--text-default);
+  font-family: "Caveat Brush", Georgia, "Times New Roman", Times, serif;
   font-size: var(--step-2, 1.8rem);
   text-decoration: none;
 }

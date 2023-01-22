@@ -1,4 +1,5 @@
 /* box sizing */
+@import url("https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap");
 *,
 *::before,
 *::after {
@@ -167,6 +168,7 @@ h4 {
   --remove-color: #EF476F;
   --form-background: #ffffff;
   --form-border: #073b4c;
+  --button-background: #06d6a0;
 }
 
 .link--no-style {
@@ -246,9 +248,40 @@ nav a:hover {
   align-self: flex-start;
 }
 
-.logo {
+a.logo {
+  color: var(--text-default);
+  font-family: "Caveat Brush", Georgia, "Times New Roman", Times, serif;
   font-size: var(--step-2, 1.8rem);
   text-decoration: none;
+}
+
+.flash-messages {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  font-size: var(--step--1);
+}
+
+.flash {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: var(--form-background);
+  border-radius: var(--border-radius, 10px);
+  padding: var(--space-2xs);
+  border: 3px solid black;
+}
+
+.flash--error {
+  border-color: var(--remove-color);
+}
+
+.flash--success {
+  border-color: var(--button-background);
+}
+
+.flash__remove {
+  padding: var(--space-3xs) var(--space-2xs);
 }
 
 .form {
@@ -311,6 +344,10 @@ label {
   min-width: 60%;
 }
 
+.charCount {
+  text-align: right;
+}
+
 @media screen and (min-width: 35rem) {
   .entry__form--bottom {
     flex-direction: row;
@@ -328,10 +365,15 @@ label {
 }
 .feed__container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, 1fr);
   gap: var(--space-s);
 }
 
+@media screen and (min-width: 35rem) {
+  .feed__container {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  }
+}
 .feed__item {
   display: flex;
   flex-direction: column;
