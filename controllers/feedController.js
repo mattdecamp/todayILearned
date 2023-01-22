@@ -6,7 +6,7 @@ exports.createFeedItem = async (req, res) => {
   req.body.tags = req.body.tags.split(",");
   const feedItem = new FeedItem(req.body);
   await feedItem.save();
-  req.flash("success", `Successfully created ${feedItem.title}. nice!`);
+  req.flash("success", `Post successfully created. Nice!`);
   res.redirect("/");
 };
 
@@ -30,6 +30,6 @@ exports.deleteFeedItem = async (req, res) => {
   // confirmAuthor(postItem, req.user);
   const id = req.params.id;
   await FeedItem.findByIdAndRemove(id);
-  req.flash("success", `Item successfully deleted. Nice!`);
+  req.flash("success", `Item successfully deleted.`);
   res.redirect("/");
 };
