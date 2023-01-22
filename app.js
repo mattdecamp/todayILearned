@@ -51,7 +51,7 @@ passport.use(User.createStrategy());
 
 app.use((req, res, next) => {
   res.locals.h = helpers;
-  res.locals.logo = { url: "/", title: "t.i.l..." };
+  res.locals.logo = { url: "/", title: "Today I learned..." };
   res.locals.nav = [
     { url: "/account", title: "Account" },
     { url: "/register", title: "Register" },
