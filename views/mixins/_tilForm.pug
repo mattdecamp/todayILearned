@@ -6,8 +6,11 @@ mixin tilForm
           label(for="title") Title 
           input(type="text" name="title" placeholder="Post Title")
         .entry__form--top--body
-          label(for="body") Today I Learned...
-          textarea(name="body" placeholder="Today I Learned..."  maxlength="200" style="resize: none;")
+          label(for="body") Today I learned...
+          textarea(id="tilBody" name="body" placeholder="Today I Learned..."  maxlength="200" style="resize: none;")
+          p.charCount
+            span.charUsed 0
+            span /200
       .entry__form--bottom
         .entry__form--bottom--tags
           label(for="tags") Tags
