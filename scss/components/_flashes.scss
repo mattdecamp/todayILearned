@@ -1,0 +1,28 @@
+.flash-messages {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  font-size: var(--step--1)
+}
+
+.flash {
+  display:flex;
+  flex-wrap: wrap;  
+  justify-content: space-between;
+  background-color: var(--form-background);
+  border-radius: var(--border-radius, 10px);
+  padding: var(--space-2xs);
+  border: 3px solid black;
+}
+
+.flash--error {
+  border-color: var(--remove-color);
+}
+
+.flash--success {
+  border-color: var(--button-background);
+}
+
+.flash__remove {
+  padding: var(--space-3xs) var(--space-2xs);
+}
