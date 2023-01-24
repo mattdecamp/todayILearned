@@ -4,8 +4,31 @@ include mixins/_footer
 doctype html
 html
   head
+    - var author = 'Matt DeCamp'
+    - var url = 'https://todayilearned.mattdecamp.com'
+    - var description = 'An app to tell the world what you learned today!'
+    - var image = ''
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
+    meta(content='IE=edge', http-equiv='X-UA-Compatible')
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(content='width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no', name='viewport')
+    meta(name='ROBOTS', content='NOINDEX, NOFOLLOW')
+    link(rel='icon', href="assets/images/favicon.png")
+    meta(content=description, name='description')
+    // Twitter card
+    meta(content='summary_large_image', name='twitter:card')
+    meta(content=url, name='twitter:site')
+    meta(content=author, name='twitter:creator')
+    meta(content=title, name='twitter:title')
+    meta(content=description, name='twitter:description')
+    meta(content=image, name='twitter:image')
+    // / OG meta
+    meta(content=url, property='og:url')
+    meta(content=title, property='og:title')
+    meta(content=image, property='og:image')
+    meta(content='website', property='og:type')
+    meta(content=description, property='og:description')
+    meta(content=title, property='og:site_name')
     title= title
     link(rel='stylesheet' href='/styles/main.css')
   body
@@ -15,7 +38,6 @@ html
       main#main.content
         block messages
           if locals.flashes
-            //- pre= h.dump(locals.flashes)
             .flash-messages
               - const categories = Object.keys(locals.flashes)
               each category in categories
