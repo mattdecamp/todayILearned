@@ -29,7 +29,6 @@ app.use(
     cookie: { maxAge: 60000 },
     resave: false,
     saveUninitialized: true,
-    // store: new MongoStore({ mongoUrl: process.env.DATABASE }),
   })
   );
   // The flash middleware let's us use req.flash('error', 'Shit!'), which will then pass that message to the next page the user requests
