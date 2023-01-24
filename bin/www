@@ -29,7 +29,7 @@ const http = require('http');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(`$PORT`);
+var port = normalizePort(`0.0.0.0:$PORT`);
 app.set('port', port);
 
 /**
