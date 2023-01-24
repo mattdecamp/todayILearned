@@ -1,6 +1,9 @@
 {
   "name": "todayilearned",
   "version": "0.0.1",
+  "engines": {
+    "node": ">=16.13.0"
+  },
   "description": "A feed for posting what you learned today.",
   "main": "app.js",
   "private": true,
@@ -19,6 +22,7 @@
     "express": "~4.16.1",
     "express-session": "^1.17.3",
     "express-validator": "^6.14.2",
+    "helmet": "^6.0.1",
     "http-errors": "~1.6.3",
     "md5": "^2.3.0",
     "moment": "^2.29.3",
