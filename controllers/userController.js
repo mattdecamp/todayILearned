@@ -59,7 +59,6 @@ exports.registerUser = async (req, res, next) => {
   const user = new User({ name: req.body.name, email: req.body.email });
   const registerWithPromise = promisify(User.register).bind(User);
   await registerWithPromise(user, req.body.password);
-  // TODO if user exists, message with redirect to login
   next();
 };
 
@@ -77,7 +76,7 @@ exports.updateAccount = async (req, res) => {
     { $set: updates },
     { new: true, runValidators: true }
   );
-  req.flash('success', 'Your Account has been successfully updated!')
+  req.flash('success', 'Your Account has been successfully updated.')
   res.redirect('/account');
 
 };
