@@ -2,7 +2,6 @@ const createError = require("http-errors");
 const express = require("express");
 const bodyParser = require("body-parser");
 const session = require("express-session");
-// const MongoStore = require("connect-mongo");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
@@ -12,6 +11,7 @@ const routes = require("./routes/index");
 const helpers = require("./helpers");
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
+const helmet = require("helmet");
 
 const app = express();
 
@@ -38,6 +38,7 @@ app.use(
   // Passport JS is what we use to handle our logins
   app.use(passport.initialize());
 app.use(passport.session());
+app.use(helmet());
   
 
 passport.serializeUser(User.serializeUser());
