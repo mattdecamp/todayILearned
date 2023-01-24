@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const FeedItem = mongoose.model("FeedItem");
-
+// const FeedItem = mongoose.model("FeedItem");
+const FeedItem = require('../models/FeedItem')
 exports.createFeedItem = async (req, res) => {
   req.body.author = req.user._id;
   req.body.tags = req.body.tags.split(",");

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const { body, validationResult } = require("express-validator");
-const User = mongoose.model("User");
+// const User = mongoose.model("User");
+const User = require('../models/User')
 const { promisify } = require("util");
 
 exports.loginForm = (req, res) => {
