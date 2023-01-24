@@ -104,6 +104,10 @@ select {
   --space-s-l: clamp(1.31rem, calc(0.99rem + 1.61vw), 3rem);
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   font-size: var(--step--1, 1.2rem);
   background: var(--background-main, #fefefe);

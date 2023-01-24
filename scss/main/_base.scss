@@ -1,3 +1,7 @@
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   font-size: var(--step--1,1.2rem);
   background: var(--background-main, #fefefe);
