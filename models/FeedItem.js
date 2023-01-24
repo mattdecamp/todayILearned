@@ -33,7 +33,6 @@ feedSchema.pre("save", function (next) {
   }
   this.slug = slug(this.title+"-"+this.created.toDateString());
   next();
-  // TODO make sure all slugs can be unique
 });
 
 module.exports = mongoose.model("FeedItem", feedSchema);
