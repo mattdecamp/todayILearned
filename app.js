@@ -2,6 +2,7 @@ const createError = require("http-errors");
 const express = require("express");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+var cookieSession = require("cookie-session");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
@@ -24,13 +25,24 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
-  session({
-    secret: process.env.SECRET,
-    cookie: { maxAge: 60000 },
-    resave: false,
-    saveUninitialized: true,
+  cookieSession({
+    name: "session",
+    keys: [
+      process.env.SECRET
+    ],
+
+    // Cookie Options
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
   })
-  );
+);
+// app.use(
+//   session({
+//     secret: process.env.SECRET,
+//     cookie: { maxAge: 60000 },
+//     resave: false,
+//     saveUninitialized: true,
+//   })
+//   );
   // The flash middleware let's us use req.flash('error', 'Shit!'), which will then pass that message to the next page the user requests
   app.use(flash());
   
