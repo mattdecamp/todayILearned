@@ -1,12 +1,22 @@
 const mongoose = require("mongoose");
-// const FeedItem = mongoose.model("FeedItem");
-const FeedItem = require('../models/FeedItem')
+const FeedItem = require("../models/FeedItem");
 exports.createFeedItem = async (req, res) => {
-  req.body.author = req.user._id;
-  req.body.tags = req.body.tags.split(",");
-  const feedItem = new FeedItem(req.body);
-  await feedItem.save();
-  req.flash("success", `Post successfully created. Nice!`);
+  if (!req.body.title) {
+    req.flash("error", `Post must have a title`);
+  }
+  else if (!req.body.body) {
+    req.flash("error", `Post cannot be blank`);
+  }
+  else {
+    req.body.author = req.user._id;
+    req.body.tags = req.body.tags.split(",");
+    const feedItem = new FeedItem(req.body);
+    await feedItem.save();
+    req.flash("success", `Post successfully created. Nice!`);
+
+  }
+  
+
   res.redirect("/");
 };
 
@@ -27,7 +37,6 @@ exports.deleteFeedItem = async (req, res) => {
     req.flash("error", `You must be the author.`);
     res.redirect("/");
   }
-  // confirmAuthor(postItem, req.user);
   const id = req.params.id;
   await FeedItem.findByIdAndRemove(id);
   req.flash("success", `Item successfully deleted.`);
