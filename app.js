@@ -27,9 +27,7 @@ app.use(cookieParser());
 app.use(
   cookieSession({
     name: "session",
-    keys: [
-      process.env.SECRET
-    ],
+    keys: [process.env.SECRET],
 
     // Cookie Options
     maxAge: 24 * 60 * 60 * 1000, // 24 hours
@@ -43,20 +41,27 @@ app.use(
 //     saveUninitialized: true,
 //   })
 //   );
-  // The flash middleware let's us use req.flash('error', 'Shit!'), which will then pass that message to the next page the user requests
-  app.use(flash());
-  
-  // Passport JS is what we use to handle our logins
-  app.use(passport.initialize());
+// The flash middleware let's us use req.flash('error', 'Shit!'), which will then pass that message to the next page the user requests
+app.use(flash());
+
+// Passport JS is what we use to handle our logins
+app.use(passport.initialize());
 app.use(passport.session());
-app.use(helmet());
-  
+// app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    useDefaults: true,
+    directives: {
+      "img-src": ["'self'", "https: data:"],
+    },
+  }),
+  helmet.crossOriginEmbedderPolicy({ policy: "credentialless" })
+);
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 passport.use(User.createStrategy());
 
-  
 //////////////////////
 // APP LOCAL VARIABLES
 //////////////////////
@@ -79,6 +84,20 @@ app.use((req, res, next) => {
   res.locals.currentPath = req.path;
   next();
 });
+
+// app.use((req, res, next) => {
+//   res.locals.cspNonce = crypto.randomBytes(16).toString("hex");
+//   next();
+// });
+// app.use(
+//   helmet({
+//     contentSecurityPolicy: {
+//       directives: {
+//         scriptSrc: ["'self'", (req, res) => `'nonce-${res.locals.cspNonce}'`],
+//       },
+//     },
+//   })
+// );
 
 app.use("/", routes);
 
