@@ -1,11 +1,14 @@
 const mongoose = require("mongoose");
 const { body, validationResult } = require("express-validator");
-// const User = mongoose.model("User");
-const User = require('../models/User')
+const User = require("../models/User");
 const { promisify } = require("util");
+const passport = require("passport");
 
 exports.loginForm = (req, res) => {
-  res.render("login", { title: "Login", flashes: req.flash() });
+  res.render("login", {
+    title: "Login",
+    flashes: req.flash(),
+  });
 };
 
 exports.registerForm = (req, res) => {
@@ -19,23 +22,18 @@ exports.validationBodyRules = [
     remove_extension: false,
     gmail_remove_subaddress: false,
   }),
-  body(
-    "password",
-    "Password fields cannot be blank and must be at least 8 characters."
-  ).notEmpty(),
+  body("password", "Password fields must be at least 8 characters.").notEmpty(),
   // body("passwordconfirm", "Please confirm the password.").notEmpty(),
   body(
     "passwordconfirm",
     "Password confirmation does not match password"
   ).custom((value, { req }) => {
     if (value !== req.body.password) {
-      throw new Error("Password confirmation does not match password");
+      throw new Error("Password fields do not match");
     }
-
     // Indicates the success of this synchronous custom validator
     return true;
   }),
-  // body("passwordconfirm", "Passwords must match.").equals(),
 ];
 
 exports.validation = (req, res, next) => {
@@ -57,9 +55,10 @@ exports.validation = (req, res, next) => {
 };
 
 exports.registerUser = async (req, res, next) => {
-  const user = new User({ name: req.body.name, email: req.body.email });
-  const registerWithPromise = promisify(User.register).bind(User);
-  await registerWithPromise(user, req.body.password);
+  await User.register(
+    new User({ name: req.body.name, email: req.body.email }),
+    req.body.password
+  );
   next();
 };
 
@@ -77,7 +76,6 @@ exports.updateAccount = async (req, res) => {
     { $set: updates },
     { new: true, runValidators: true }
   );
-  req.flash('success', 'Your Account has been successfully updated.')
-  res.redirect('/account');
-
+  req.flash("success", "Your Account has been successfully updated.");
+  res.redirect("/account");
 };
