@@ -26,10 +26,24 @@ router.post(
 router.get("/login", userController.loginForm);
 
 // login user
-router.post("/login", passport.authenticate("local"), function (req, res) {
-  req.flash("success", "You are now logged in!");
-  res.redirect("/");
-});
+router.post(
+  // TODO: Need a flash message to indicate failed login
+  "/login",
+  (req, res, next) => {
+    passport.authenticate("local", {
+      successRedirect: "/",
+      failureRedirect: "/register",
+      failureFlash: {
+        type: "error",
+        message: "Incorrect username or password",
+      },
+      successFlash: {
+        type: "success",
+        message: "You are now logged in!",
+      },
+    })(req, res, next);
+  }
+);
 
 // render register page
 router.get("/register", userController.registerForm);
@@ -40,18 +54,34 @@ router.post(
   userController.validationBodyRules,
   userController.validation,
   userController.registerUser,
-  passport.authenticate('local'), function(req, res) {
+  passport.authenticate("local"),
+  function (req, res, err) {
+    if (err) {
+      console.log(err);
+      req.flash('error', "user already exists")
+      res.redirect('/register')
+    }
     req.flash("success", "You are now registered!");
-      res.redirect('/');
+    res.redirect("/");
   }
+  // function (req, res, err) {
+  //   if (err) {
+  //     console.log(err);
+  //     return res.render("register");
+  //   }
+  //   req.flash("success", "You are now registered!");
+  //   res.redirect("/");
+  // }
 );
 
 // logout user
-router.get("/logout", function(req, res) {
+router.get("/logout", function (req, res) {
   req.logout(function (err) {
-    if (err) { return next(err); }
+    if (err) {
+      return next(err);
+    }
   });
-  res.redirect("/register");
+  res.redirect("/login");
 });
 
 router.get("/account", authController.authEdit, userController.editAccount);
