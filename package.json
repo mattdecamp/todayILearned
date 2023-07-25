@@ -8,10 +8,9 @@
   "main": "app.js",
   "private": true,
   "scripts": {
-    "start": "node .",
     "dev": "nodemon ./bin/www & npm run scss",
-    "watch": "nodemon ./bin/www",
-    "scss": "sass --watch scss/main.scss public/styles/main.css"
+    "scss": "sass --watch scss/main.scss public/styles/main.css",
+    "test": "cross-env NODE_ENV=test jest --testTimeout=5000"
   },
   "dependencies": {
     "body-parser": "^1.20.0",
@@ -19,6 +18,7 @@
     "connect-mongo": "^4.6.0",
     "cookie-parser": "~1.4.4",
     "cookie-session": "^2.0.0",
+    "cross-env": "^7.0.3",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "express-session": "^1.17.3",
@@ -42,6 +42,8 @@
   "devDependencies": {
     "concurrently": "^7.2.2",
     "dotenv": "^16.0.1",
-    "sass": "^1.53.0"
+    "jest": "^29.6.1",
+    "sass": "^1.53.0",
+    "supertest": "^6.3.3"
   }
 }
