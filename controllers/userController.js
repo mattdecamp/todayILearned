@@ -55,11 +55,18 @@ exports.validation = (req, res, next) => {
 };
 
 exports.registerUser = async (req, res, next) => {
-  await User.register(
-    new User({ name: req.body.name, email: req.body.email }),
-    req.body.password
-  );
-  next();
+  const userExists = await User.exists({ email: req.body.email });
+  if (userExists) {
+    // return res.status(400).send({ message: "User already exists" });
+    req.flash("error", "A user with this email is already registered");
+    res.redirect("/register");
+  } else {
+    await User.register(
+      new User({ name: req.body.name, email: req.body.email }),
+      req.body.password
+    );
+    next();
+  }
 };
 
 exports.editAccount = (req, res) => {
